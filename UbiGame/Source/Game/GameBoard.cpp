@@ -16,11 +16,17 @@ GameBoard::GameBoard()
 	, m_backGround(nullptr)
 {
 	m_player = new PlayerEntity();
-	
+  m_player2 = new PlayerEntity();
+
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
+  GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player2);
+
+	m_player->SetPos(sf::Vector2f(50.f, 50.f));
 	m_player->SetSize(sf::Vector2f(40.f, 40.f));
-	
+
+	m_player2->SetPos(sf::Vector2f(10.f, 10.f));
+	m_player2->SetSize(sf::Vector2f(40.f, 40.f));
+
 	CreateBackGround();
 	//Debug
 	for (int a = 0; a < 3; ++a)
