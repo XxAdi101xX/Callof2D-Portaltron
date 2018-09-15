@@ -163,6 +163,17 @@ void GameBoard::SpawnLazer(int player) {
 		pos = m_player2->GetPos();
 		playerDirection = m_player2->m_direction;
 	}
+
+	int initOffset = 30;
+
+	if (playerDirection == 1)
+		pos.x += initOffset;
+	else if (playerDirection == 2)
+		pos.y += initOffset;
+	else if (playerDirection == 3)
+		pos.x -= initOffset;
+	else pos.y -= initOffset;
+
 	LazerEntity* lazer = new LazerEntity(playerDirection);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
 	lazer->SetPos(pos);
