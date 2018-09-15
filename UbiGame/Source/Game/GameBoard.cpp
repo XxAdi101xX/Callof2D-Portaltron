@@ -54,6 +54,7 @@ void GameBoard::Update()
 		{
 			// SpawnNewRandomObstacles();
 			// SpawnNewRandomTiledObstacles();
+			SpawnTwoPortals();
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
@@ -95,13 +96,13 @@ void GameBoard::UpdateLazers(float dt) {
 
 void GameBoard::UpdateObstacles(float dt)
 {
-	static float obstacleSpeed = 100.f;
+	// static float obstacleSpeed = 100.f;
 	
 	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
 	{
 		GameEngine::Entity* obstacle = (*it);
 		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
+		// currPos.x -= obstacleSpeed * dt;
 		obstacle->SetPos(currPos);
 		//If we are to remove ourselves
 		if (currPos.x < -50.f)
@@ -170,9 +171,7 @@ void GameBoard::SpawnNewRandomObstacles()
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
 }
 
-
-void GameBoard::SpawnNewRandomTiledObstacles()
-{
+void GameBoard::SpawnNewRandomTiledObstacles() {
 	static int minObstacleCount = 2;
 	static int maxObstacleCount = 7;
 
@@ -184,7 +183,7 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 	static float minObstacleYPos = 20.f;
 	static float maxObstacleYPos = 450.f;
 
-	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));	
+	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
 	sf::Vector2f size = sf::Vector2f(32.f, 32.f);
 
 	int obstacleCount = (int)RandomFloatRange((float)minObstacleCount, (float)maxObstacleCount);
@@ -193,6 +192,33 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 		SpawnNewObstacle(pos, size);
 		pos.y += size.y;
 	}
+
+	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+}
+
+void GameBoard::SpawnTwoPortals()
+{
+	ClearAllObstacles();
+	static int obstacleCount = 2;
+
+	static float minNextSpawnTime = 1.3f;
+	static float maxNextSpawnTime = 1.7f;
+
+	static float minObstacleXPos = 350.f;
+	static float maxObstacleXPos = 450.f;
+	static float minObstacleYPos = 20.f;
+	static float maxObstacleYPos = 450.f;
+
+	sf::Vector2f pos1 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
+	sf::Vector2f pos2 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
+	sf::Vector2f size = sf::Vector2f(32.f, 64.f);
+
+
+	SpawnNewObstacle(pos1, size);
+	pos1.y += size.y;
+
+	SpawnNewObstacle(pos2, size);
+	pos2.y += size.y;
 
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
 }
@@ -232,4 +258,12 @@ void GameBoard::UpdateBackGround()
 		return;
 
 	m_backGround->SetPos(m_player->GetPos());
+}
+
+void GameBoard::ClearAllObstacles() {
+	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();) {
+		GameEngine::Entity* obstacle = (*it);
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+		it = m_obstacles.erase(it);
+	}
 }
