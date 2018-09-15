@@ -4,10 +4,11 @@
 #include "GameEngine/EntitySystem/Entity.h"
 
 #include <vector>
+#include <iostream>
 
 using namespace GameEngine;
 
-CollidablePhysicsComponent::CollidablePhysicsComponent()
+CollidablePhysicsComponent::CollidablePhysicsComponent(): CollidableComponent(false)
 {
 
 }
@@ -45,6 +46,7 @@ void CollidablePhysicsComponent::Update()
 		AABBRect intersection;
 		AABBRect myBox = GetWorldAABB();
 		AABBRect colideBox = colComponent->GetWorldAABB();
+
 		if (myBox.intersects(colideBox, intersection))
 		{
 			sf::Vector2f pos = GetEntity()->GetPos();
@@ -61,6 +63,10 @@ void CollidablePhysicsComponent::Update()
 					pos.y -= intersection.height;
 				else
 					pos.y += intersection.height;
+			}
+			if (colComponent->ShouldEnableTeleportation()) {
+				pos.x = 5; // update this 
+				pos.y = 4; // and thiss
 			}
 
 			GetEntity()->SetPos(pos);

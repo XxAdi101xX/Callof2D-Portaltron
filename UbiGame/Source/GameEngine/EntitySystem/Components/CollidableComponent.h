@@ -11,7 +11,7 @@ namespace GameEngine
 	class CollidableComponent : public Component
 	{
 	public:
-		CollidableComponent();
+		CollidableComponent(bool isPortal);
 		virtual ~CollidableComponent();
 
 		virtual void OnAddToWorld() override;
@@ -22,11 +22,15 @@ namespace GameEngine
 
 		void SetBoundingBox(sf::Vector2f size);
 
+		const bool ShouldEnableTeleportation() const { return enableTeleportation; }
+
 	protected:
 		void SetupDefaultBoundingBox();
 		
 		bool	 m_useDefaultBox;
 		AABBRect m_AABBBox;
+
+		bool enableTeleportation;
 	};
 }
 

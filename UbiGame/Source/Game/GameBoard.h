@@ -21,10 +21,12 @@ namespace Game
 		void UpdateObstacles(float dt);
 		void UpdateLazers(float dt);
 		void UpdatePlayerDying();
+		void SpawnTwoPortals();
 		void SpawnNewRandomObstacles();
 		void SpawnLazer(int player);
 		void SpawnNewRandomTiledObstacles();
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size);
+		void ClearAllObstacles();
 
 		bool IsGameOver() const { return m_isGameOver; }		
 

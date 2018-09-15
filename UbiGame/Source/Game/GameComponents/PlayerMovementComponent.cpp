@@ -10,7 +10,6 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include "Game\GameEntities\PlayerEntity.h"
-#include <iostream>
 
 using namespace Game;
 
@@ -69,8 +68,6 @@ void PlayerMovementComponent::Update()
 		playerType == 1 ? 
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Down) : 
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-
-	std::cout << GetEntity()->GetPos().x << std::endl;
 
 	if (leftMovement)
 	{
