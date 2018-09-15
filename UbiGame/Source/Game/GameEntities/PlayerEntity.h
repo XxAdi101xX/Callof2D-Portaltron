@@ -14,6 +14,7 @@ namespace Game
 		~PlayerEntity();
 
 		int player;
+		int m_direction;
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;

@@ -69,6 +69,21 @@ void PlayerMovementComponent::Update()
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Down) : 
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 
+	if (leftMovement) {
+		dynamic_cast<PlayerEntity*>(GetEntity())->m_direction = 3;
+	}
+	else if (rightMovement) {
+		dynamic_cast<PlayerEntity*>(GetEntity())->m_direction = 1;
+
+	}
+	else if (upMovement) {
+		dynamic_cast<PlayerEntity*>(GetEntity())->m_direction = 4;
+
+	}
+	else if (downMovement) {
+		dynamic_cast<PlayerEntity*>(GetEntity())->m_direction = 2;
+	}
+
 	if (leftMovement)
 	{
 		wantedVel.x -= playerVel * dt;

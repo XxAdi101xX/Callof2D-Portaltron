@@ -28,7 +28,7 @@ namespace GameEngine
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
 		case eTexture::Particles: return "particles.png";
-		case eTexture::Lazers:		  return "lazer.png";
+		case eTexture::Lazers:		  return "lazer2.png";
 		default:       return "UnknownTexType";
 		}
 	}

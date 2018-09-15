@@ -72,13 +72,27 @@ void GameBoard::Update()
 }
 
 void GameBoard::UpdateLazers(float dt) {
-	static float lazerSpeed = 100.f;
+	static float lazerSpeed = 300.f;
 	for (std::vector<LazerEntity*>::iterator it = m_lazers.begin(); it != m_lazers.end();)
 	{
 		LazerEntity* lazer = (*it);
 		sf::Vector2f currPos = lazer->GetPos();
-		int movingForwards = lazer->m_dir == 1 ? -1 : 1;
-		currPos.x += lazerSpeed * dt * movingForwards;
+		float dx = 0;
+		float dy = 0;
+		if (lazer->m_dir == 1) {
+			dx = lazerSpeed * dt;
+		}
+		else if (lazer->m_dir == 2) {
+			dy = lazerSpeed * dt;
+		}
+		else if (lazer->m_dir == 3) {
+			dx = lazerSpeed * dt * -1;
+		}
+		else {
+			dy = lazerSpeed * dt * -1;
+		}
+		currPos.x += dx;
+		currPos.y += dy;
 		lazer->SetPos(currPos);
 		//If we are to remove ourselves
 		if (currPos.x < -50.f)
@@ -133,17 +147,19 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnLazer(int player) {
-	LazerEntity* lazer = new LazerEntity(player == 1 ? 1 : 2);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
 	sf::Vector2f pos;
+	int playerDirection;
 	if (player == 1) {
 		pos = m_player->GetPos();
-	}
-	else {
+		playerDirection = m_player->m_direction;
+	} else {
 		pos = m_player2->GetPos();
+		playerDirection = m_player2->m_direction;
 	}
+	LazerEntity* lazer = new LazerEntity(playerDirection);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
 	lazer->SetPos(pos);
-	lazer->SetSize(sf::Vector2f(20, 20));
+	lazer->SetSize(sf::Vector2f(6, 6));
 	m_lazers.push_back(lazer);
 }
 

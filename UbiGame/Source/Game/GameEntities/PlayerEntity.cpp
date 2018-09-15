@@ -13,6 +13,8 @@ using namespace Game;
 PlayerEntity::PlayerEntity(int playerType)
 {
 	player = playerType;
+	m_direction = 1;
+
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());
 
