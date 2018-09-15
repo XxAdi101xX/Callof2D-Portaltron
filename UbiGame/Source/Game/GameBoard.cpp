@@ -56,7 +56,7 @@ void GameBoard::Update()
 
 		UpdateObstacles(dt);
 		UpdateBackGround();
-		UpdatePlayerDying();
+		//UpdatePlayerDying();
 	}		
 }
 
