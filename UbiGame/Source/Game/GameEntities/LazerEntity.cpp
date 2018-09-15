@@ -7,7 +7,7 @@ LazerEntity::LazerEntity(int dir)
 	m_dir = dir;
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	m_renderComponent->SetFillColor(sf::Color::Red);
-	m_renderComponent->SetTexture(GameEngine::eTexture::Tileset);
+	m_renderComponent->SetTexture(GameEngine::eTexture::Lazers);
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 	//AddComponent<GameEngine::CollidableComponent>();

@@ -15,6 +15,7 @@ namespace GameEngine
 			Tileset,
 			BG,
 			Particles,
+			Lazers,
 			Count
 		};
 	}	
@@ -27,6 +28,7 @@ namespace GameEngine
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
 		case eTexture::Particles: return "particles.png";
+		case eTexture::Lazers:		  return "lazer.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -60,6 +62,7 @@ namespace TextureHelper
 		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(600.f, 600.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
+		case  GameEngine::eTexture::Lazers: return sf::Vector2f(10.f, 10.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
