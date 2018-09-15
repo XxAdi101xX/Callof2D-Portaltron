@@ -15,7 +15,7 @@ namespace GameEngine
 			Tileset,
 			BG,
 			Particles,
-			Count,
+			Count
 		};
 	}	
 
