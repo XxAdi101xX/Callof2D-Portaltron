@@ -42,6 +42,8 @@ namespace Game
 
 		PlayerEntity* m_player;
 		PlayerEntity* m_player2;
+		float m_p1_lastshot;
+		float m_p2_lastshot;
 		GameEngine::Entity* m_backGround;
 
 		std::vector<GameEngine::Entity*> m_obstacles;

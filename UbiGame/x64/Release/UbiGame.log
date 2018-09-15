@@ -1,8 +1,8 @@
 ﻿  GameBoard.cpp
   Generating code
-  2 of 1084 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  4 of 1084 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    15 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   UbiGame.vcxproj -> C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\x64\Release\UbiGame.exe
   C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\bg.png

@@ -19,6 +19,8 @@ GameBoard::GameBoard()
 {
 	m_player = new PlayerEntity(1);
 	m_player2 = new PlayerEntity(2);
+	m_p1_lastshot = GameEngine::GameEngineMain::GetInstance()->GetGameTime();
+	m_p2_lastshot = GameEngine::GameEngineMain::GetInstance()->GetGameTime();
 
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player2);
@@ -47,6 +49,7 @@ GameBoard::~GameBoard()
 void GameBoard::Update()
 {	
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
+	float gt = GameEngine::GameEngineMain::GetInstance()->GetGameTime();
 	if (!m_isGameOver)
 	{
 		m_lastObstacleSpawnTimer -= dt;
@@ -57,10 +60,14 @@ void GameBoard::Update()
 			SpawnTwoPortals();
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
+			&& gt - m_p1_lastshot > 0.5) {
+			m_p1_lastshot = gt;
 			SpawnLazer(1);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
+			&& gt - m_p2_lastshot > 0.5) {
+			m_p2_lastshot = gt;
 			SpawnLazer(2);
 		}
 
