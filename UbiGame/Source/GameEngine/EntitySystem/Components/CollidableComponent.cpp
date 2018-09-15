@@ -5,11 +5,11 @@
 
 using namespace GameEngine;
 
-CollidableComponent::CollidableComponent()
+CollidableComponent::CollidableComponent(bool isPortal)
 	: m_AABBBox()
 	, m_useDefaultBox(true)
 {
-
+	enableTeleportation = isPortal;
 }
 
 

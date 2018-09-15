@@ -50,6 +50,16 @@ namespace GameEngine
 			return newComponent;
 		}
 
+		template <class T>
+		Component* AddComponentWithParams(bool param)
+		{
+			Component* newComponent = new T(param);
+			newComponent->SetEntity(this);
+			m_components.push_back(newComponent);
+
+			return newComponent;
+		}
+
 	protected:
 		void DestroyComponents();
 

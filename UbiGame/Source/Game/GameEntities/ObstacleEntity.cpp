@@ -6,7 +6,7 @@
 
 using namespace Game;
 
-ObstacleEntity::ObstacleEntity()	
+ObstacleEntity::ObstacleEntity(bool isPortal)
 {
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	m_renderComponent->SetFillColor(sf::Color::Red);
@@ -14,7 +14,8 @@ ObstacleEntity::ObstacleEntity()
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 
-	AddComponent<GameEngine::CollidableComponent>();
+	//AddComponent<GameEngine::CollidableComponent>();
+	AddComponentWithParams<GameEngine::CollidableComponent>(isPortal);
 }
 
 

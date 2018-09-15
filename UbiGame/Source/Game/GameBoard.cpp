@@ -226,7 +226,7 @@ void GameBoard::SpawnTwoPortals()
 
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity();
+	ObstacleEntity* obstacle = new ObstacleEntity(true);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
