@@ -114,8 +114,8 @@ void PlayerMovementComponent::Update()
 	sf::Vector2f tempVel = GetEntity()->GetPos();
 	if (tempVel.x < 0) tempVel.x = 0;
 	if (tempVel.y < 0) tempVel.y = 0;
-	if (tempVel.x > 600) tempVel.x = 600;
-	if (tempVel.y > 600) tempVel.y = 600;
+	if (tempVel.x > 1500) tempVel.x = 1500;
+	if (tempVel.y > 1500) tempVel.y = 1500;
 
 	GetEntity()->SetPos(tempVel);
 

@@ -26,10 +26,10 @@ GameBoard::GameBoard()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player2);
 
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));
-	m_player->SetSize(sf::Vector2f(40.f, 40.f));
+	m_player->SetSize(sf::Vector2f(60.f, 60.f));
 
 	m_player2->SetPos(sf::Vector2f(10.f, 10.f));
-	m_player2->SetSize(sf::Vector2f(40.f, 40.f));
+	m_player2->SetSize(sf::Vector2f(60.f, 60.f));
 
 	CreateBackGround();
 	//Debug
@@ -79,7 +79,7 @@ void GameBoard::Update()
 }
 
 void GameBoard::UpdateLazers(float dt) {
-	static float lazerSpeed = 300.f;
+	static float lazerSpeed = 500.f;
 	for (std::vector<LazerEntity*>::iterator it = m_lazers.begin(); it != m_lazers.end();)
 	{
 		LazerEntity* lazer = (*it);
@@ -102,7 +102,7 @@ void GameBoard::UpdateLazers(float dt) {
 		currPos.y += dy;
 		lazer->SetPos(currPos);
 		//If we are to remove ourselves
-		if (currPos.x < -50.f)
+		if (currPos.x < -50.f || currPos.x > 1500.f || currPos.y < -50.f || currPos.y > 1500.f)
 		{
 			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
 			it = m_lazers.erase(it);
@@ -177,7 +177,7 @@ void GameBoard::SpawnLazer(int player) {
 	LazerEntity* lazer = new LazerEntity(playerDirection);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
 	lazer->SetPos(pos);
-	lazer->SetSize(sf::Vector2f(6, 6));
+	lazer->SetSize(sf::Vector2f(18, 18));
 	m_lazers.push_back(lazer);
 }
 
@@ -275,8 +275,8 @@ void GameBoard::CreateBackGround()
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 	render->SetTexture(GameEngine::eTexture::BG);
 	render->SetZLevel(0);
-	bgEntity->SetPos(sf::Vector2f(300.f, 300.f));
-	bgEntity->SetSize(sf::Vector2f(600.f, 600.f));
+	bgEntity->SetPos(sf::Vector2f(750.f, 750.f));
+	bgEntity->SetSize(sf::Vector2f(1500.f, 1500.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;

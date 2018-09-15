@@ -14,17 +14,22 @@ PlayerEntity::PlayerEntity(int playerType)
 {
 	player = playerType;
 	m_direction = 1;
+	m_lives = 3;
 
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());
 
 	//Render 
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());	
-	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
+	if (playerType == 1) {
+		m_renderComponent->SetTexture(GameEngine::eTexture::Player);
+	} else {
+		m_renderComponent->SetTexture(GameEngine::eTexture::Player2);
+	}
 	m_renderComponent->SetZLevel(2);
 
 	//Animation
-	m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
+	//m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
 		
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();
@@ -66,4 +71,12 @@ void PlayerEntity::OnAddToWorld()
 void PlayerEntity::OnRemoveFromWorld()
 {
 	__super::OnRemoveFromWorld();
+}
+
+void PlayerEntity::OnHit() {
+	m_lives--;
+}
+
+bool PlayerEntity::IsDead() {
+	return m_lives == 0;
 }

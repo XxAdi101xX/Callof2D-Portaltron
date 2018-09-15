@@ -15,9 +15,12 @@ namespace Game
 
 		int player;
 		int m_direction;
+		int m_lives;
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
+		virtual void PlayerEntity::OnHit();
+		virtual bool IsDead();
 
 	protected:
 		GameEngine::SpriteRenderComponent* m_renderComponent;		
