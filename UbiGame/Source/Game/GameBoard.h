@@ -1,6 +1,7 @@
 #pragma once
 #include "GameEngine\EntitySystem\Entity.h"
 
+#include "Game/GameEntities/LazerEntity.h"
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 
@@ -17,8 +18,10 @@ namespace Game
 
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
+		void UpdateLazers(float dt);
 		void UpdateObstacles(float dt);
 		void UpdatePlayerDying();
+		void SpawnLazer(int player);
 		void SpawnNewRandomObstacles();
 		void SpawnNewRandomTiledObstacles();
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size);
@@ -40,6 +43,7 @@ namespace Game
 		GameEngine::Entity* m_backGround;
 
 		std::vector<GameEngine::Entity*> m_obstacles;
+		std::vector<LazerEntity*> m_lazers;
 		float m_lastObstacleSpawnTimer;
 		bool  m_isGameOver;
 	};
