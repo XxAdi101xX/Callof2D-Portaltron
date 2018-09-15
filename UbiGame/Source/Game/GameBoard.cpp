@@ -1,5 +1,7 @@
 #include "GameBoard.h"
 
+#include "Game\GameEntities\LazerEntity.h"
+#include <SFML/Window/Keyboard.hpp>
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
@@ -50,16 +52,47 @@ void GameBoard::Update()
 		m_lastObstacleSpawnTimer -= dt;
 		if (m_lastObstacleSpawnTimer <= 0.f)
 		{
+
 			// SpawnNewRandomObstacles();
 			// SpawnNewRandomTiledObstacles();
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			SpawnLazer(1);
+		} 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+			SpawnLazer(2);
+		}
+
 		UpdateObstacles(dt);
 		UpdateBackGround();
+		UpdateLazers(dt);
 		//UpdatePlayerDying();
 	}		
 }
 
+void GameBoard::UpdateLazers(float dt) {
+	static float lazerSpeed = 100.f;
+
+	for (std::vector<LazerEntity*>::iterator it = m_lazers.begin(); it != m_lazers.end();)
+	{
+		LazerEntity* lazer = (*it);
+		sf::Vector2f currPos = lazer->GetPos();
+		int movingForwards = lazer->m_dir == 1 ? -1 : 1;
+		currPos.x += lazerSpeed * dt * movingForwards;
+		lazer->SetPos(currPos);
+		//If we are to remove ourselves
+		if (currPos.x < -50.f)
+		{
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
+			it = m_lazers.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
+}
 
 void GameBoard::UpdateObstacles(float dt)
 {
@@ -151,6 +184,21 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 }
 
 
+void GameBoard::SpawnLazer(int player) {
+	LazerEntity* lazer = new LazerEntity(player == 1 ? 1 : 2);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
+	sf::Vector2f pos;
+	if (player == 1) {
+		pos = m_player->GetPos();
+	} else {
+		pos = m_player2->GetPos();
+	}
+
+	lazer->SetPos(pos);
+	lazer->SetSize(sf::Vector2f(20, 20));
+	m_lazers.push_back(lazer);
+}
+
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
 	ObstacleEntity* obstacle = new ObstacleEntity();
@@ -158,7 +206,7 @@ void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& si
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
 
-	m_obstacles.push_back(obstacle);
+	//m_obstacles.push_back(obstacle);
 }
 
 
