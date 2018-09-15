@@ -4,6 +4,7 @@
 int main()
 {
 	GameEngine::GameEngineMain* mainEngine = GameEngine::GameEngineMain::GetInstance();
+
 	while (mainEngine->GetRenderWindow()->isOpen())
 	{				
 		mainEngine->Update();
