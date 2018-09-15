@@ -11,6 +11,7 @@ namespace Game
 		ObstacleEntity(bool isPortal);
 		~ObstacleEntity();
 
+		virtual int GetEntityType() override;
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
 

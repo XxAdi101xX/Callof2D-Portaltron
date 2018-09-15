@@ -1,8 +1,10 @@
 #include "LazerEntity.h"
-#include "GameEngine/EntitySystem/Components/CollidableComponent.h"
+#include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
 #include "SFML/Graphics.hpp"
 using namespace Game;
+
 LazerEntity::LazerEntity(int dir, int player)
+
 {
 	m_dir = dir;
 	m_player = player;
@@ -21,14 +23,24 @@ LazerEntity::LazerEntity(int dir, int player)
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 	//AddComponent<GameEngine::CollidableComponent>();
+
+	//Collisions
+	AddComponent<GameEngine::CollidablePhysicsComponent>();
 }
+
 LazerEntity::~LazerEntity()
 {
 }
+
+int LazerEntity::GetEntityType() {
+	return 3;
+}
+
 void LazerEntity::OnAddToWorld()
 {
 	__super::OnAddToWorld();
 }
+
 void LazerEntity::OnRemoveFromWorld()
 {
 	__super::OnRemoveFromWorld();

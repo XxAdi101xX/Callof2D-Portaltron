@@ -47,8 +47,11 @@ void CollidablePhysicsComponent::Update()
 		AABBRect myBox = GetWorldAABB();
 		AABBRect colideBox = colComponent->GetWorldAABB();
 
+		int entityType = GetEntity()->GetEntityType(); // DO SOMETHING WITH THIS
+
 		if (myBox.intersects(colideBox, intersection))
 		{
+			std::cout << entityType << std::endl;
 			sf::Vector2f pos = GetEntity()->GetPos();
 			if (intersection.width < intersection.height)
 			{
@@ -65,8 +68,8 @@ void CollidablePhysicsComponent::Update()
 					pos.y += intersection.height;
 			}
 			if (colComponent->ShouldEnableTeleportation()) {
-				pos.x = 5; // update this 
-				pos.y = 4; // and thiss
+				pos.x = 35; // update this 
+				pos.y = 24; // and thiss
 			}
 
 			GetEntity()->SetPos(pos);

@@ -111,10 +111,12 @@ void GameBoard::UpdateLazers(float dt) {
 		currPos.y += dy;
 		lazer->SetPos(currPos);
 		//If we are to remove ourselves
+
 		if (currPos.x < -50.f || currPos.x > 1500.f || currPos.y < -50.f || currPos.y > 1500.f)
 		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
-			it = m_lazers.erase(it);
+			/*GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
+			it = m_lazers.erase(it);*/
+			it++;
 		}
 		else
 		{

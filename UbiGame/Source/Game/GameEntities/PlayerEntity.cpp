@@ -60,6 +60,9 @@ PlayerEntity::~PlayerEntity()
 
 }
 
+int PlayerEntity::GetEntityType() {
+	return 1;
+}
 
 void PlayerEntity::OnAddToWorld()
 {
