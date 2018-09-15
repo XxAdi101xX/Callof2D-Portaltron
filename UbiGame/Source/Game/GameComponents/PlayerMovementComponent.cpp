@@ -9,6 +9,8 @@
 #include "Game\GameComponents\PlayerSoundComponent.h"
 
 #include <SFML/Window/Keyboard.hpp>
+#include "Game\GameEntities\PlayerEntity.h"
+#include <iostream>
 
 using namespace Game;
 
@@ -47,19 +49,38 @@ void PlayerMovementComponent::Update()
 	static bool  debugSounds = false;
 	static float playerVel = 150.f; //Pixels/s
 
-
 	sf::Vector2f wantedVel = sf::Vector2f(0.f, 0.f);
 	bool wantsToFly = false;
+	auto playerType = dynamic_cast<PlayerEntity*>(GetEntity())->player;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	bool leftMovement = 
+		playerType == 1 ? 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Left) : 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+	bool rightMovement = 
+		playerType == 1 ? 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Right) : 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+	bool upMovement = 
+		playerType == 1 ? 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Up) : 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+	bool downMovement = 
+		playerType == 1 ? 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Down) : 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+
+	std::cout << GetEntity()->GetPos().x << std::endl;
+
+	if (leftMovement)
 	{
 		wantedVel.x -= playerVel * dt;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (rightMovement)
 	{
 		wantedVel.x += playerVel * dt;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (upMovement)
 	{
 		wantedVel.y -= playerVel * dt;
 		if (m_playerSoundComponent)
@@ -67,7 +88,7 @@ void PlayerMovementComponent::Update()
 			m_playerSoundComponent->RequestSound(true);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (downMovement)
 	{
 		wantedVel.y += playerVel * dt;
 		if (m_playerSoundComponent)

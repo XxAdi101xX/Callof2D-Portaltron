@@ -10,8 +10,10 @@ namespace Game
 	class PlayerEntity : public GameEngine::Entity
 	{
 	public:
-		PlayerEntity();
+		PlayerEntity(int playerType);
 		~PlayerEntity();
+
+		int player;
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;

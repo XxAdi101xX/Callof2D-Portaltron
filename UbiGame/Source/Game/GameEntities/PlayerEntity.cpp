@@ -10,8 +10,9 @@
 
 using namespace Game;
 
-PlayerEntity::PlayerEntity()
+PlayerEntity::PlayerEntity(int playerType)
 {
+	player = playerType;
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());
 
