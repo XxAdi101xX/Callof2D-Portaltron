@@ -13,6 +13,8 @@ namespace GameEngine
 			None = -1,
 			Player = 0,
 			Player2 = 1,
+			EndW1 = 2,
+			EndW2 = 3,
 			Tileset,
 			BG,
 			Particles,
@@ -22,7 +24,7 @@ namespace GameEngine
 			RedHeart,
 			Count
 		};
-	}	
+	}
 
 	inline const char* GetPath(eTexture::type texture)
 	{
@@ -37,6 +39,8 @@ namespace GameEngine
 		case eTexture::Particles: return "particles.png";
 		case eTexture::Lazers:		  return "BLUE100GOOD.png";
 		case eTexture::Lazers2:		  return "RED100GOOD.png";
+    case eTexture::EndW1: return "player1win.png";
+    case eTexture::EndW2: return "player2win.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -75,6 +79,8 @@ namespace TextureHelper
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
 		case  GameEngine::eTexture::Lazers: return sf::Vector2f(18.f, 18.f);
 		case  GameEngine::eTexture::Lazers2: return sf::Vector2f(18.f, 18.f);
+		case  GameEngine::eTexture::EndW1: return sf::Vector2f(600.f, 600.f);
+		case  GameEngine::eTexture::EndW1: return sf::Vector2f(600.f, 600.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
