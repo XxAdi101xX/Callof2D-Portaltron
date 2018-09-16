@@ -18,6 +18,8 @@ PlayerSoundComponent::~PlayerSoundComponent()
 
 void PlayerSoundComponent::OnAddToWorld()
 {
+
+	
 	if (GameEngine::SoundComponent* const soundComponent = GetEntity()->GetComponent<GameEngine::SoundComponent>())
 	{
 		m_upSoundId   = soundComponent->LoadSoundFromFile("Resources/snd/thunder.wav");
@@ -37,7 +39,7 @@ void PlayerSoundComponent::Update()
 
 void PlayerSoundComponent::RequestSound(bool upSound)
 {
-	static bool enablePlayerSounds = false;	
+	static bool enablePlayerSounds = true;	
 	if (!enablePlayerSounds)
 		return;
 

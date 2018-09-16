@@ -1,6 +1,7 @@
 #pragma once
 #include "GameEngine\EntitySystem\Entity.h"
 
+#include "Game/GameEntities/HeartEntity.h"
 #include "Game/GameEntities/LazerEntity.h"
 #include <SFML/System/Vector2.hpp>
 #include <vector>
@@ -20,6 +21,7 @@ namespace Game
 		void Update();
 		void UpdateObstacles(float dt);
 		void UpdateLazers(float dt);
+		void UpdateHeart();
 		void UpdatePlayerDying();
 		void SpawnTwoPortals();
 		void SpawnNewRandomObstacles();
@@ -42,6 +44,15 @@ namespace Game
 
 		PlayerEntity* m_player;
 		PlayerEntity* m_player2;
+
+		HeartEntity* m_heart_player1_1;
+		HeartEntity* m_heart_player1_2;
+		HeartEntity* m_heart_player1_3;
+
+		HeartEntity* m_heart_player2_1;
+		HeartEntity* m_heart_player2_2;
+		HeartEntity* m_heart_player2_3;
+		
 		float m_p1_lastshot;
 		float m_p2_lastshot;
 		GameEngine::Entity* m_backGround;

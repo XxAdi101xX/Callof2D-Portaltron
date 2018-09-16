@@ -1,5 +1,6 @@
 #include "GameBoard.h"
 
+#include "Game\GameEntities\HeartEntity.h"
 #include "Game\GameEntities\LazerEntity.h"
 #include <SFML/Window/Keyboard.hpp>
 #include "GameEngine\GameEngineMain.h"
@@ -21,17 +22,47 @@ GameBoard::GameBoard()
 {
 	m_player = new PlayerEntity(1);
 	m_player2 = new PlayerEntity(2);
+	m_heart_player1_1 = new HeartEntity(1);
+	m_heart_player1_2 = new HeartEntity(1);
+	m_heart_player1_3 = new HeartEntity(1);
+	m_heart_player2_1 = new HeartEntity(2);
+	m_heart_player2_2 = new HeartEntity(2);
+	m_heart_player2_3 = new HeartEntity(2);
 	m_p1_lastshot = GameEngine::GameEngineMain::GetInstance()->GetGameTime();
 	m_p2_lastshot = GameEngine::GameEngineMain::GetInstance()->GetGameTime();
 
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player2);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player1_1);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player1_2);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player1_3);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player2_1);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player2_2);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player2_3);
 
 	m_player->SetPos(sf::Vector2f(1400.f, 750.f));
 	m_player->SetSize(sf::Vector2f(100.f, 46.f));
 
 	m_player2->SetPos(sf::Vector2f(100.f, 750.f));
 	m_player2->SetSize(sf::Vector2f(100.f, 46.f));
+
+	m_heart_player1_1->SetPos(sf::Vector2f(100.f, 50.f));
+	m_heart_player1_1->SetSize(sf::Vector2f(100.f, 100.f));
+
+	m_heart_player1_2->SetPos(sf::Vector2f(200.f, 50.f));
+	m_heart_player1_2->SetSize(sf::Vector2f(100.f, 100.f));
+
+	m_heart_player1_3->SetPos(sf::Vector2f(300.f, 50.f));
+	m_heart_player1_3->SetSize(sf::Vector2f(100.f, 100.f));
+
+	m_heart_player2_1->SetPos(sf::Vector2f(1200.f, 50.f));
+	m_heart_player2_1->SetSize(sf::Vector2f(100.f, 100.f));
+
+	m_heart_player2_2->SetPos(sf::Vector2f(1300.f, 50.f));
+	m_heart_player2_2->SetSize(sf::Vector2f(100.f, 100.f));
+
+	m_heart_player2_3->SetPos(sf::Vector2f(1400.f, 50.f));
+	m_heart_player2_3->SetSize(sf::Vector2f(100.f, 100.f));
 
 	CreateBackGround();
 	//Debug
@@ -66,6 +97,8 @@ void GameBoard::Update()
 			&& gt - m_p1_lastshot > 0.5) {
 			m_p1_lastshot = gt;
 			SpawnLazer(1);
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player1_2);
+
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
 			&& gt - m_p2_lastshot > 0.5) {
@@ -299,6 +332,7 @@ void GameBoard::CreateBackGround()
 	render->SetZLevel(0);
 	bgEntity->SetPos(sf::Vector2f(750.f, 750.f));
 	bgEntity->SetSize(sf::Vector2f(1500.f, 1500.f));
+
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;

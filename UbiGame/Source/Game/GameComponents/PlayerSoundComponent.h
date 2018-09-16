@@ -18,7 +18,6 @@ namespace Game
 	private:		
 		float m_timeSinceLastUpSound;
 		float m_timeSinceLastDownSound;
-
 		GameEngine::SoundManager::SoundId m_upSoundId;
 		GameEngine::SoundManager::SoundId m_downSoundId;
 	};
