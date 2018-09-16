@@ -22,10 +22,10 @@ LazerEntity::LazerEntity(int dir, int player)
 	}
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
-	//AddComponent<GameEngine::CollidableComponent>();
+	AddComponentWithParams<GameEngine::CollidableComponent>(false);
 
 	//Collisions
-	AddComponent<GameEngine::CollidablePhysicsComponent>();
+	// AddComponent<GameEngine::CollidablePhysicsComponent>();
 }
 
 LazerEntity::~LazerEntity()

@@ -81,7 +81,7 @@ void PlayerEntity::OnRemoveFromWorld()
 }
 
 void PlayerEntity::OnHit() {
-	m_lives--;
+	--m_lives;
 }
 
 bool PlayerEntity::IsDead() {
