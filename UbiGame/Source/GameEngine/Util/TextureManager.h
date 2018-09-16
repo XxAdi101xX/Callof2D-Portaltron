@@ -80,7 +80,7 @@ namespace TextureHelper
 		case  GameEngine::eTexture::Lazers: return sf::Vector2f(18.f, 18.f);
 		case  GameEngine::eTexture::Lazers2: return sf::Vector2f(18.f, 18.f);
 		case  GameEngine::eTexture::EndW1: return sf::Vector2f(600.f, 600.f);
-		case  GameEngine::eTexture::EndW1: return sf::Vector2f(600.f, 600.f);
+		case  GameEngine::eTexture::EndW2: return sf::Vector2f(600.f, 600.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
