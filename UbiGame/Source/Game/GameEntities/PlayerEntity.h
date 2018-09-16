@@ -21,6 +21,7 @@ namespace Game
 		int m_isright;
 		int m_isup;
 		int m_isdown;
+		bool lostLife;
 		
 		virtual int GetEntityType() override;
 		virtual void OnAddToWorld() override;
