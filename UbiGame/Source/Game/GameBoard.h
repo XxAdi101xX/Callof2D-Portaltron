@@ -21,7 +21,7 @@ namespace Game
 		void Update();
 		void UpdateObstacles(float dt);
 		void UpdateLazers(float dt);
-		void UpdateHeart();
+		void UpdateHearts();
 		void UpdatePlayerDying();
 		void SpawnTwoPortals();
 		void SpawnNewRandomObstacles();

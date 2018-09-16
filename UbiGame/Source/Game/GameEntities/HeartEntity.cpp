@@ -11,9 +11,9 @@ HeartEntity::HeartEntity(int player)
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	m_renderComponent->SetFillColor(sf::Color::Red);
 	if (m_player == 1) {
-		m_renderComponent->SetTexture(GameEngine::eTexture::RedHeart);
-	} else {
 		m_renderComponent->SetTexture(GameEngine::eTexture::BlueHeart);
+	} else {
+		m_renderComponent->SetTexture(GameEngine::eTexture::RedHeart);
 	}
 	
 	m_renderComponent->SetZLevel(2);

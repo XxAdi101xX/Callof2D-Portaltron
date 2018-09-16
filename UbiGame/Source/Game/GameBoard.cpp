@@ -40,28 +40,28 @@ GameBoard::GameBoard()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player2_2);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_heart_player2_3);
 
-	m_player->SetPos(sf::Vector2f(1400.f, 750.f));
+	m_player->SetPos(sf::Vector2f(100.f, 750.f));
 	m_player->SetSize(sf::Vector2f(100.f, 46.f));
 
-	m_player2->SetPos(sf::Vector2f(100.f, 750.f));
+	m_player2->SetPos(sf::Vector2f(1400.f, 750.f));
 	m_player2->SetSize(sf::Vector2f(100.f, 46.f));
 
-	m_heart_player1_1->SetPos(sf::Vector2f(100.f, 50.f));
+	m_heart_player1_1->SetPos(sf::Vector2f(300.f, 50.f));
 	m_heart_player1_1->SetSize(sf::Vector2f(100.f, 100.f));
 
 	m_heart_player1_2->SetPos(sf::Vector2f(200.f, 50.f));
 	m_heart_player1_2->SetSize(sf::Vector2f(100.f, 100.f));
 
-	m_heart_player1_3->SetPos(sf::Vector2f(300.f, 50.f));
+	m_heart_player1_3->SetPos(sf::Vector2f(100.f, 50.f));
 	m_heart_player1_3->SetSize(sf::Vector2f(100.f, 100.f));
 
-	m_heart_player2_1->SetPos(sf::Vector2f(1200.f, 50.f));
+	m_heart_player2_1->SetPos(sf::Vector2f(1400.f, 50.f));
 	m_heart_player2_1->SetSize(sf::Vector2f(100.f, 100.f));
 
 	m_heart_player2_2->SetPos(sf::Vector2f(1300.f, 50.f));
 	m_heart_player2_2->SetSize(sf::Vector2f(100.f, 100.f));
 
-	m_heart_player2_3->SetPos(sf::Vector2f(1400.f, 50.f));
+	m_heart_player2_3->SetPos(sf::Vector2f(1200.f, 50.f));
 	m_heart_player2_3->SetSize(sf::Vector2f(100.f, 100.f));
 
 	CreateBackGround();
@@ -97,7 +97,6 @@ void GameBoard::Update()
 			&& gt - m_p1_lastshot > 0.5) {
 			m_p1_lastshot = gt;
 			SpawnLazer(1);
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player1_2);
 
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)
@@ -109,8 +108,41 @@ void GameBoard::Update()
 		UpdateObstacles(dt);
 		UpdateBackGround();
 		UpdateLazers(dt);
+		UpdateHearts();
 		UpdatePlayerDying();
 	}		
+}
+
+void GameBoard::UpdateHearts() {
+	if (m_player->lostLife) {
+		switch (m_player->m_lives) {
+		case 2:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player1_1);
+			break;
+		case 1:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player1_2);
+			break;
+		case 0:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player1_3);
+			break;
+		}
+		m_player->lostLife = false;
+	}
+
+	if (m_player2->lostLife) {
+		switch (m_player2->m_lives) {
+		case 2:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player2_3);
+			break;
+		case 1:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player2_2);
+			break;
+		case 0:
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_heart_player2_1);
+			break;
+		}
+		m_player2->lostLife = false;
+	}
 }
 
 void GameBoard::UpdateLazers(float dt) {

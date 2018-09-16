@@ -19,6 +19,7 @@ PlayerEntity::PlayerEntity(int playerType)
 	m_isright = 0;
 	m_isup = 0;
 	m_isdown = 0;
+	lostLife = false;
 
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());
@@ -82,6 +83,7 @@ void PlayerEntity::OnRemoveFromWorld()
 
 void PlayerEntity::OnHit() {
 	--m_lives;
+	lostLife = true;
 }
 
 bool PlayerEntity::IsDead() {
