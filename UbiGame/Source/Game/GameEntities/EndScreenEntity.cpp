@@ -22,18 +22,18 @@ EndScreenEntity::EndScreenEntity(int winner)
 }
 
 
-PlayerEntity::~PlayerEntity()
+EndScreenEntity::~EndScreenEntity()
 {
 
 }
 
-void PlayerEntity::OnAddToWorld()
+void EndScreenEntity::OnAddToWorld()
 {
 	__super::OnAddToWorld();
 }
 
 
-void PlayerEntity::OnRemoveFromWorld()
+void EndScreenEntity::OnRemoveFromWorld()
 {
 	__super::OnRemoveFromWorld();
 }

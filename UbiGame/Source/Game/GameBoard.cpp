@@ -9,6 +9,7 @@
 #include "GameEngine\Util\CameraManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ObstacleEntity.h"
+#include "Game/GameEntities/EndScreenEntity.h"
 
 #include <iostream>
 
@@ -221,14 +222,18 @@ void GameBoard::UpdatePlayerDying()
 {	
 	bool noGameOver = GameEngine::CameraManager::IsFollowCameraEnabled();
 
-	if (noGameOver)
+	if (noGameOver || (!m_player->IsDead() && !m_player2->IsDead()))
 		return;
 
-	if (m_player->IsDead() || m_player2->IsDead())
-	{
-		std::cout << "DEDDD" << m_player->m_lives << m_player2->m_lives << std::endl;
-		m_isGameOver = true;
-	}
+	int winr;
+	if (m_player->IsDead()) winr = 2;
+	else winr = 1;
+
+	EndScreenEntity* e = new EndScreenEntity(winr);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+	e->SetPos(sf::Vector2f(750.f, 750.f));
+	e->SetSize(sf::Vector2f(600.f, 600.f));
+	m_isGameOver = true;
 }
 
 void GameBoard::SpawnLazer(int player) {
