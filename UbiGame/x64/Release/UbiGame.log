@@ -1,33 +1,26 @@
 ﻿  PlayerCameraComponent.cpp
-  PlayerSoundComponent.cpp
-  ParticleComponent.cpp
-  ParticleEmitterComponent.cpp
-  AnimationComponent.cpp
+  EndScreenEntity.cpp
   HeartEntity.cpp
-  PlayerMovementComponent.cpp
-  GameBoard.cpp
-  RenderComponent.cpp
-  main.cpp
-  GameEngineMain.cpp
-  SpriteRenderComponent.cpp
   Generating code
-  All 1092 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 1109 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  UbiGame.vcxproj -> C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\x64\Release\UbiGame.exe
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\bg.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\blue.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\BLUE100GOOD.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\blueheart.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\Flappy.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer2.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer3.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\particles.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\player.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\red.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\RED100GOOD.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\redheart.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\tileset.png
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\snd\glassBreak.wav
-  C:\Users\Julie Ngo\Documents\GitHub\Archery-Portal\UbiGame\Resources\snd\thunder.wav
-  16 File(s) copied
+  UbiGame.vcxproj -> C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\x64\Release\UbiGame.exe
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\bg.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\blue.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\BLUE100GOOD.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\blueheart.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\Flappy.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer2.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\lazer3.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\particles.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\player.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\player1win.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\player2win.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\red.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\RED100GOOD.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\redheart.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\img\tileset.png
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\snd\glassBreak.wav
+  C:\Users\Adithya Venkatarao\Documents\GitHub\Archery-Portal\UbiGame\Resources\snd\thunder.wav
+  18 File(s) copied
