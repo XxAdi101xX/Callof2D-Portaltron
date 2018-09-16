@@ -17,6 +17,7 @@ namespace GameEngine
 			BG,
 			Particles,
 			Lazers,
+			Lazers2,
 			Count
 		};
 	}	
@@ -30,7 +31,8 @@ namespace GameEngine
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
 		case eTexture::Particles: return "particles.png";
-		case eTexture::Lazers:		  return "lazer2.png";
+		case eTexture::Lazers:		  return "BLUE100GOOD.png";
+		case eTexture::Lazers2:		  return "RED100GOOD.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -60,12 +62,13 @@ namespace TextureHelper
 	{
 		switch (texture)
 		{
-		case  GameEngine::eTexture::Player:  return sf::Vector2f(60.f, 60.f);
-		case  GameEngine::eTexture::Player2:  return sf::Vector2f(60.f, 60.f);
+		case  GameEngine::eTexture::Player:  return sf::Vector2f(100.f, 46.f);
+		case  GameEngine::eTexture::Player2:  return sf::Vector2f(100.f, 46.f);
 		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(1500.f, 1500.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
-		case  GameEngine::eTexture::Lazers: return sf::Vector2f(30.f, 30.f);
+		case  GameEngine::eTexture::Lazers: return sf::Vector2f(18.f, 18.f);
+		case  GameEngine::eTexture::Lazers2: return sf::Vector2f(18.f, 18.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}

@@ -25,11 +25,11 @@ GameBoard::GameBoard()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player2);
 
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));
-	m_player->SetSize(sf::Vector2f(60.f, 60.f));
+	m_player->SetPos(sf::Vector2f(1400.f, 750.f));
+	m_player->SetSize(sf::Vector2f(100.f, 46.f));
 
-	m_player2->SetPos(sf::Vector2f(10.f, 10.f));
-	m_player2->SetSize(sf::Vector2f(60.f, 60.f));
+	m_player2->SetPos(sf::Vector2f(100.f, 750.f));
+	m_player2->SetSize(sf::Vector2f(100.f, 46.f));
 
 	CreateBackGround();
 	//Debug
@@ -79,7 +79,7 @@ void GameBoard::Update()
 }
 
 void GameBoard::UpdateLazers(float dt) {
-	static float lazerSpeed = 500.f;
+	static float lazerSpeed = 520.f;
 	for (std::vector<LazerEntity*>::iterator it = m_lazers.begin(); it != m_lazers.end();)
 	{
 		LazerEntity* lazer = (*it);
@@ -186,7 +186,7 @@ void GameBoard::SpawnLazer(int player) {
 		pos.x -= initOffset;
 	else pos.y -= initOffset;
 
-	LazerEntity* lazer = new LazerEntity(playerDirection);
+	LazerEntity* lazer = new LazerEntity(playerDirection, player);
 	lazer->m_isdown = pe->m_isdown;
 	lazer->m_isup = pe->m_isup;
 	lazer->m_isright = pe->m_isright;

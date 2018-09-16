@@ -6,9 +6,10 @@ namespace Game
 	class LazerEntity : public GameEngine::Entity
 	{
 	public:
-		LazerEntity(int dir);
+		LazerEntity(int dir, int player);
 		~LazerEntity();
 		int m_dir;
+		int m_player;
 		int m_isleft;
 		int m_isright;
 		int m_isup;
