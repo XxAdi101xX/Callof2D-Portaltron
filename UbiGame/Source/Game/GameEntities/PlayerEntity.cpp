@@ -60,6 +60,9 @@ PlayerEntity::~PlayerEntity()
 
 }
 
+int PlayerEntity::GetEntityType() {
+	return 1;
+}
 
 void PlayerEntity::OnAddToWorld()
 {
@@ -78,7 +81,7 @@ void PlayerEntity::OnRemoveFromWorld()
 }
 
 void PlayerEntity::OnHit() {
-	m_lives--;
+	--m_lives;
 }
 
 bool PlayerEntity::IsDead() {

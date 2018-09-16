@@ -11,6 +11,7 @@ namespace GameEngine
 		Entity();
 		virtual ~Entity();
 
+		virtual int GetEntityType();
 		virtual void OnAddToWorld();
 		virtual void OnRemoveFromWorld();
 

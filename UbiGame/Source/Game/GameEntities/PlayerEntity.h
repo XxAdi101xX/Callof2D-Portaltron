@@ -16,11 +16,13 @@ namespace Game
 		int player;
 		int m_direction;
 		int m_lives;
+
 		int m_isleft;
 		int m_isright;
 		int m_isup;
 		int m_isdown;
 		
+		virtual int GetEntityType() override;
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
 		virtual void PlayerEntity::OnHit();

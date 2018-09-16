@@ -24,6 +24,9 @@ ObstacleEntity::~ObstacleEntity()
 
 }
 
+int ObstacleEntity::GetEntityType() {
+	return 2;
+}
 
 void ObstacleEntity::OnAddToWorld()
 {

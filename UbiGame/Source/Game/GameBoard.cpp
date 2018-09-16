@@ -9,6 +9,8 @@
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ObstacleEntity.h"
 
+#include <iostream>
+
 using namespace Game;
 
 GameBoard::GameBoard()
@@ -74,7 +76,7 @@ void GameBoard::Update()
 		UpdateObstacles(dt);
 		UpdateBackGround();
 		UpdateLazers(dt);
-		//UpdatePlayerDying();
+		UpdatePlayerDying();
 	}		
 }
 
@@ -111,10 +113,12 @@ void GameBoard::UpdateLazers(float dt) {
 		currPos.y += dy;
 		lazer->SetPos(currPos);
 		//If we are to remove ourselves
+
 		if (currPos.x < -50.f || currPos.x > 1500.f || currPos.y < -50.f || currPos.y > 1500.f)
 		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
-			it = m_lazers.erase(it);
+			/*GameEngine::GameEngineMain::GetInstance()->RemoveEntity(lazer);
+			it = m_lazers.erase(it);*/
+			it++;
 		}
 		else
 		{
@@ -155,9 +159,9 @@ void GameBoard::UpdatePlayerDying()
 	if (noGameOver)
 		return;
 
-	static float xToPlayerDie = 0.f;
-	if (m_player->GetPos().x < xToPlayerDie)
+	if (m_player->IsDead() || m_player2->IsDead())
 	{
+		std::cout << "DEDDD" << m_player->m_lives << m_player2->m_lives << std::endl;
 		m_isGameOver = true;
 	}
 }
@@ -176,15 +180,16 @@ void GameBoard::SpawnLazer(int player) {
 		pe = m_player2;
 	}
 
-	int initOffset = 50;
+	int xOffset = 60;
+	int yOffset = 50;
 
 	if (playerDirection == 1)
-		pos.x += initOffset;
+		pos.x += xOffset;
 	else if (playerDirection == 2)
-		pos.y += initOffset;
+		pos.y += yOffset;
 	else if (playerDirection == 3)
-		pos.x -= initOffset;
-	else pos.y -= initOffset;
+		pos.x -= xOffset;
+	else pos.y -= yOffset;
 
 	LazerEntity* lazer = new LazerEntity(playerDirection, player);
 	lazer->m_isdown = pe->m_isdown;
@@ -252,8 +257,8 @@ void GameBoard::SpawnTwoPortals()
 	ClearAllObstacles();
 	static int obstacleCount = 2;
 
-	static float minNextSpawnTime = 1.3f;
-	static float maxNextSpawnTime = 1.7f;
+	static float minNextSpawnTime = 3.5f;
+	static float maxNextSpawnTime = 6.5f;
 
 	static float minObstacleXPos = 350.f;
 	static float maxObstacleXPos = 450.f;
@@ -262,7 +267,7 @@ void GameBoard::SpawnTwoPortals()
 
 	sf::Vector2f pos1 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
 	sf::Vector2f pos2 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f size = sf::Vector2f(32.f, 64.f);
+	sf::Vector2f size = sf::Vector2f(32.f, 134.f);
 
 
 	SpawnNewObstacle(pos1, size);

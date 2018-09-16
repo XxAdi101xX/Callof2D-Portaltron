@@ -15,6 +15,9 @@ Entity::~Entity()
 	DestroyComponents();
 }
 
+int Entity::GetEntityType() {
+	return 0;
+}
 
 void Entity::OnAddToWorld() 
 {
