@@ -178,15 +178,16 @@ void GameBoard::SpawnLazer(int player) {
 		pe = m_player2;
 	}
 
-	int initOffset = 50;
+	int xOffset = 60;
+	int yOffset = 50;
 
 	if (playerDirection == 1)
-		pos.x += initOffset;
+		pos.x += xOffset;
 	else if (playerDirection == 2)
-		pos.y += initOffset;
+		pos.y += yOffset;
 	else if (playerDirection == 3)
-		pos.x -= initOffset;
-	else pos.y -= initOffset;
+		pos.x -= xOffset;
+	else pos.y -= yOffset;
 
 	LazerEntity* lazer = new LazerEntity(playerDirection, player);
 	lazer->m_isdown = pe->m_isdown;
