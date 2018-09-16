@@ -15,6 +15,10 @@ PlayerEntity::PlayerEntity(int playerType)
 	player = playerType;
 	m_direction = 1;
 	m_lives = 3;
+	m_isleft = 0;
+	m_isright = 0;
+	m_isup = 0;
+	m_isdown = 0;
 
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());

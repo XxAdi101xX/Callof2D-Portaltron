@@ -69,6 +69,20 @@ void PlayerMovementComponent::Update()
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Down) : 
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 
+	PlayerEntity* p = dynamic_cast<PlayerEntity*>(GetEntity());
+	if (leftMovement) p->m_isleft = 1;
+	else p->m_isleft = 0;
+
+	if (rightMovement) p->m_isright = 1;
+	else p->m_isright = 0;
+
+	if (downMovement) p->m_isdown = 1;
+	else p->m_isdown = 0;
+
+	if (upMovement) p->m_isup = 1;
+	else p->m_isup = 0;
+
+
 	if (leftMovement) {
 		dynamic_cast<PlayerEntity*>(GetEntity())->m_direction = 3;
 	}

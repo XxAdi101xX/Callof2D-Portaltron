@@ -86,18 +86,27 @@ void GameBoard::UpdateLazers(float dt) {
 		sf::Vector2f currPos = lazer->GetPos();
 		float dx = 0;
 		float dy = 0;
-		if (lazer->m_dir == 1) {
-			dx = lazerSpeed * dt;
+
+		if (lazer->m_isleft) dx = lazerSpeed * dt * -1;
+		if (lazer->m_isright) dx = lazerSpeed * dt;
+		if (lazer->m_isdown) dy = lazerSpeed * dt;
+		if (lazer->m_isup) dy = lazerSpeed * dt * -1;
+
+		if (dy == 0 && dx == 0) {
+			if (lazer->m_dir == 1) {
+				dx = lazerSpeed * dt;
+			}
+			else if (lazer->m_dir == 2) {
+				dy = lazerSpeed * dt;
+			}
+			else if (lazer->m_dir == 3) {
+				dx = lazerSpeed * dt * -1;
+			}
+			else {
+				dy = lazerSpeed * dt * -1;
+			}
 		}
-		else if (lazer->m_dir == 2) {
-			dy = lazerSpeed * dt;
-		}
-		else if (lazer->m_dir == 3) {
-			dx = lazerSpeed * dt * -1;
-		}
-		else {
-			dy = lazerSpeed * dt * -1;
-		}
+
 		currPos.x += dx;
 		currPos.y += dy;
 		lazer->SetPos(currPos);
@@ -156,15 +165,18 @@ void GameBoard::UpdatePlayerDying()
 void GameBoard::SpawnLazer(int player) {
 	sf::Vector2f pos;
 	int playerDirection;
+	PlayerEntity* pe;
 	if (player == 1) {
 		pos = m_player->GetPos();
 		playerDirection = m_player->m_direction;
+		pe = m_player;
 	} else {
 		pos = m_player2->GetPos();
 		playerDirection = m_player2->m_direction;
+		pe = m_player2;
 	}
 
-	int initOffset = 30;
+	int initOffset = 50;
 
 	if (playerDirection == 1)
 		pos.x += initOffset;
@@ -175,6 +187,11 @@ void GameBoard::SpawnLazer(int player) {
 	else pos.y -= initOffset;
 
 	LazerEntity* lazer = new LazerEntity(playerDirection);
+	lazer->m_isdown = pe->m_isdown;
+	lazer->m_isup = pe->m_isup;
+	lazer->m_isright = pe->m_isright;
+	lazer->m_isleft = pe->m_isleft;
+
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(lazer);
 	lazer->SetPos(pos);
 	lazer->SetSize(sf::Vector2f(18, 18));
