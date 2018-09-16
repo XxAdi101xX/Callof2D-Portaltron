@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <iostream>
+#include <random>
 
 using namespace GameEngine;
 
@@ -80,8 +81,27 @@ void CollidablePhysicsComponent::Update()
 						pos.y += intersection.height;
 				}
 				if (colComponent->ShouldEnableTeleportation()) {
-					pos.x = 35; // update this 
-					pos.y = 24; // and thiss
+					int random = ((5 - 1) * ((float)rand() / RAND_MAX)) + 1;
+					std::cout << random << "sdfsdfsd";
+
+					switch (random) {
+					case 1:
+						pos.x = 50; // update this 
+						pos.y = 750; // and thiss
+						break;
+					case 2:
+						pos.x = 750; // update this 
+						pos.y = 50; // and thiss
+						break;
+					case 3:
+						pos.x = 1450; // update this 
+						pos.y = 750; // and thiss
+						break;
+					case 4:
+						pos.x = 750; // update this 
+						pos.y = 1450; // and thiss
+						break;
+					}
 				}
 				GetEntity()->SetPos(pos);
 			}

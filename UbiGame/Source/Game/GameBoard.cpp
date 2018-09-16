@@ -320,18 +320,19 @@ void GameBoard::SpawnNewRandomTiledObstacles() {
 void GameBoard::SpawnTwoPortals()
 {
 	ClearAllObstacles();
-	static int obstacleCount = 2;
 
-	static float minNextSpawnTime = 3.5f;
-	static float maxNextSpawnTime = 6.5f;
+	static float minNextSpawnTime = 4.0f;
+	static float maxNextSpawnTime = 7.0f;
 
-	static float minObstacleXPos = 350.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
+	static float min = 100.f;
+	static float submin = 700.f;
+	static float submax = 900.f;
+	static float max = 1400.f;
 
-	sf::Vector2f pos1 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f pos2 = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
+	sf::Vector2f pos1 = sf::Vector2f(RandomFloatRange(min, submin), RandomFloatRange(min, submin));
+	sf::Vector2f pos2 = sf::Vector2f(RandomFloatRange(min, submin), RandomFloatRange(submax, max));
+	sf::Vector2f pos3 = sf::Vector2f(RandomFloatRange(submax, max), RandomFloatRange(min, submin));
+	sf::Vector2f pos4 = sf::Vector2f(RandomFloatRange(submax, max), RandomFloatRange(submax, max));
 	sf::Vector2f size = sf::Vector2f(32.f, 134.f);
 
 
@@ -340,6 +341,12 @@ void GameBoard::SpawnTwoPortals()
 
 	SpawnNewObstacle(pos2, size);
 	pos2.y += size.y;
+
+	SpawnNewObstacle(pos3, size);
+	pos3.y += size.y;
+
+	SpawnNewObstacle(pos4, size);
+	pos4.y += size.y;
 
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
 }
